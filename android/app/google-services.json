@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "862265058",
+    "firebase_url": "https://dataconsult-24af5.firebaseio.com",
+    "project_id": "dataconsult-24af5",
+    "storage_bucket": "dataconsult-24af5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862265058:android:996e223d4e0c7b9dab08bb",
+        "android_client_info": {
+          "package_name": "com.example.data_consult"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862265058-fiot7mb3fqdamoutc8pp5adevde6vtq8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.data_consult",
+            "certificate_hash": "382458305217495abb341a33fa1d5746aa26ad1a"
+          }
+        },
+        {
+          "client_id": "862265058-n323pdl2g333ik2n44hbh7mv0aq5cplh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzh9PDcVuSoS9JOFFStHJ31gRs1yP8dPc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "862265058-n323pdl2g333ik2n44hbh7mv0aq5cplh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
