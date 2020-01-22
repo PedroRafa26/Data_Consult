@@ -1,6 +1,8 @@
 import 'package:data_consult/home.dart';
+import 'package:data_consult/user/bloc/bloc_user.dart';
 import 'package:data_consult/user/ui/screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 
 
@@ -10,13 +12,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return BlocProvider(
+      child: MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         
       ),
       home: SignInScreen(),
+      ),
+      bloc: UserBloc(),
     );
+
   }
 }
 
