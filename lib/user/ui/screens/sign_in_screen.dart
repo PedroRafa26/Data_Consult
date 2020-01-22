@@ -1,3 +1,4 @@
+import 'package:data_consult/home.dart';
 import 'package:data_consult/user/bloc/bloc_user.dart';
 import 'package:data_consult/user/ui/widgets/button_green.dart';
 import 'package:data_consult/user/ui/widgets/gradient_back.dart';
@@ -27,7 +28,25 @@ class _SignInScreen extends State<SignInScreen>{
     //Es importante recordar crear la variable antes de la funcion inner linea 19
     
     userBloc = BlocProvider.of(context);
-    return signInGoogleUI();
+    return _handleCurrentSession();
+  }
+
+
+  //Aqui se decide que pantalla mostrar en base al Stream
+  Widget _handleCurrentSession(){
+    return StreamBuilder(
+      //recepcion del estatus proveniente del Bloc
+      stream: userBloc.authStatus,
+      //Respuesta al stream
+      builder: (BuildContext context, AsyncSnapshot snapshot){
+        //snapshot - contiene nuestra data  - nuestro Object User traido desde el Firebase
+        if(!snapshot.hasData || snapshot.hasError){
+          return signInGoogleUI();
+        }else{
+          return Home();
+        }
+      },
+    );
   }
 
   Widget signInGoogleUI(){
