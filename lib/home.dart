@@ -1,3 +1,4 @@
+import 'package:data_consult/user/ui/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:data_consult/add/add.dart';
 import 'package:data_consult/consult/consult.dart';
@@ -18,7 +19,8 @@ class _Home extends State<Home>{
   final List<Widget> widgetsMenu = [
     Add(),
     Database(),
-    Consult()
+    Consult(),
+    Profile()
   ];
 
   void onTapTapped(int index) {
@@ -35,8 +37,8 @@ class _Home extends State<Home>{
       body: widgetsMenu[indexTap],
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
-          canvasColor: Colors.white,
-          primaryColor: Colors.lightBlueAccent
+          canvasColor: Colors.yellow,
+          primaryColor: Colors.black
         ),
         child: BottomNavigationBar(
           onTap: onTapTapped,
@@ -44,15 +46,23 @@ class _Home extends State<Home>{
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.add),
-              title: Text("Add")
+              title: Text("Add"),
+              backgroundColor: Colors.black
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.library_books),
-              title: Text("Database")
+              title: Text("Database"),
+              backgroundColor: Colors.blueGrey
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.loupe),
-              title: Text("Consult")
+              title: Text("Consult"),
+              backgroundColor: Colors.yellow
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.people),
+              title: Text("Profile"),
+              backgroundColor: Colors.greenAccent
             ),
           ],
         ),
