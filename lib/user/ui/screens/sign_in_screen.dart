@@ -1,5 +1,6 @@
 import 'package:data_consult/home.dart';
 import 'package:data_consult/user/bloc/bloc_user.dart';
+import 'package:data_consult/user/model/user.dart';
 import 'package:data_consult/user/ui/widgets/button_green.dart';
 import 'package:data_consult/user/ui/widgets/gradient_back.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -71,7 +72,15 @@ class _SignInScreen extends State<SignInScreen>{
                onPressed: (){
                  //el then se esta usando para testeo, no es necesario incluirlo
                  //tampoco es necesaria la libreria auth_firebase porque rmpa el patron BLoC
-                 userBloc.signIn().then((FirebaseUser user)=> print("El usuario es ${user.displayName}"));
+                 //userBloc.signOut();
+                 userBloc.signIn().then((FirebaseUser user){
+                   userBloc.updateUserData(User(
+                     uid: user.uid,
+                     name: user.displayName,
+                     email: user.email,
+                     photoURL: user.photoUrl 
+                   ));
+                 });
                },
                widht: 300.0,
                height: 60.0,
