@@ -23,7 +23,7 @@ class CloudFirestoreAPI{
       'photoURL': user.photoURL,
       'lastSignIn': DateTime.now()
 
-    }, merge: true);
+    }, merge: true ); //commit de base de datos para certificar que el dato sera ingresado
 
   }
 

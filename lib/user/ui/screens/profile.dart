@@ -23,7 +23,7 @@ class Profile extends StatelessWidget{
         left: 10.0,
         right: 10.0,
       ),
-      height: 300.0,
+      height: 200.0,
 
       color: Colors.blueAccent,
 
