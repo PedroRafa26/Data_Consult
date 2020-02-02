@@ -7,6 +7,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
+import '../../../home_Cuppertino.dart';
+
 class SignInScreen extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -44,7 +46,7 @@ class _SignInScreen extends State<SignInScreen>{
         if(!snapshot.hasData || snapshot.hasError){
           return signInGoogleUI();
         }else{
-          return Home();
+          return HomeCupertino();
         }
       },
     );

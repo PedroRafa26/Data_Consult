@@ -1,10 +1,12 @@
+import 'package:data_consult/user/bloc/bloc_user.dart';
 import 'package:data_consult/user/model/user.dart';
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class UserInfo extends StatelessWidget{
  
   User user;
- 
+  UserBloc userBloc;
 
   UserInfo(@required this.user);
 
@@ -67,6 +69,7 @@ class UserInfo extends StatelessWidget{
 
 
 
+    userBloc = BlocProvider.of(context);
 
     return Container(
       margin: EdgeInsets.symmetric(
