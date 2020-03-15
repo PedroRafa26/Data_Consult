@@ -14,7 +14,8 @@ class AddClientScreen extends StatefulWidget {
   
   //preparacion de la pantalla para recibir la foto y mostrarla
   File image;
-  AddClientScreen({Key key, this.image});
+  bool camera = false;
+  AddClientScreen({Key key, this.image, this.camera});
 
   @override
   State<StatefulWidget> createState() {
@@ -70,11 +71,14 @@ class _AddPlaceScreen extends State<AddClientScreen> {
                 Container(
                   alignment: Alignment.center,
                   child: ClientImageWithFabIcon(
-                    pathImage: "assets/images/cedula_abigail1.png", //widget.image.path,
+                    pathImage: widget.image.path, //"assets/images/cedula_abigail1.png",
                     height: 220.0,
                     width: 300.0,
                     iconData: Icons.directions_car,
-                    color: Colors.greenAccent 
+                    color: Colors.greenAccent,
+                    onPressedFabIcon: (){}, 
+                    image: widget.image,
+                    
                     ),
                 ), //Imagen
                 Container(//TextField Title
@@ -87,7 +91,7 @@ class _AddPlaceScreen extends State<AddClientScreen> {
                     ),
                 ),
                 TextInput(
-                  hintText: "Description", 
+                  hintText: "Direccion", 
                   inputType: TextInputType.multiline, 
                   controller: _controllerDescriptionClient,
                   maxLines: 4,
