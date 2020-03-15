@@ -1,11 +1,14 @@
 import 'dart:io';
+import 'package:data_consult/client/model/client.dart';
 import 'package:data_consult/client/ui/widgets/client_image.dart';
 import 'package:data_consult/client/ui/widgets/title_input_location.dart';
 import 'package:data_consult/global_widgets/submit_button.dart';
 import 'package:data_consult/global_widgets/text_input.dart';
 import 'package:data_consult/global_widgets/title_header.dart';
+import 'package:data_consult/user/bloc/bloc_user.dart';
 import 'package:data_consult/user/ui/widgets/gradient_back.dart';
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class AddClientScreen extends StatefulWidget {
   
@@ -27,8 +30,7 @@ class _AddPlaceScreen extends State<AddClientScreen> {
 
     final _controllerTitleClient = TextEditingController();
     final _controllerDescriptionClient = TextEditingController();
-
-
+    UserBloc userBloc = BlocProvider.of<UserBloc>(context);
 
 
     return Scaffold(
@@ -109,7 +111,14 @@ class _AddPlaceScreen extends State<AddClientScreen> {
                       
                       //2. Cloud Firestore
                       //Place - title, description, url, user
+                      userBloc.updateClientDate(Client(
+                        name: _controllerTitleClient.text,
+                        addres: _controllerDescriptionClient.text,
 
+                      )).whenComplete((){
+                        print("Termino");
+                        Navigator.pop(context);
+                      });
 
 
                     },

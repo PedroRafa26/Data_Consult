@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:data_consult/client/model/client.dart';
 import 'package:data_consult/user/model/user.dart';
 
 class CloudFirestoreAPI{
@@ -26,5 +27,24 @@ class CloudFirestoreAPI{
     }, merge: true ); //commit de base de datos para certificar que el dato sera ingresado
 
   }
+
+  Future<void> updateClientData(Client client) async {
+    CollectionReference refClients = _db.collection(CLIENTS);
+    //metodo add, generara un identificador unico y autoincrementable
+    
+    //
+    
+    await refClients.add(
+      {
+        'id':client.id,
+      'name': client.name,
+      'last_name:':client.lastName,
+      'addres': client.addres,
+      'email': client.emailClient
+      // 'polizas':  "${POLIZAS/}"//tipo de dato referencia "${Collecion}/${identificador}"
+      }
+      );
+  }
+  
 
 }

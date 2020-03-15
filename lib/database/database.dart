@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:data_consult/client/ui/screens/add_client_screen.dart';
 import 'package:data_consult/global_widgets/circle_button.dart';
 import 'package:data_consult/user/ui/widgets/gradient_back.dart';
@@ -20,8 +19,7 @@ class Database extends StatelessWidget{
           Navigator.push(context,
            MaterialPageRoute(builder: (BuildContext context) => AddClientScreen(image: image) ));
         },false, Icons.add, 40.0, Colors.white,),
-        ),
-        
+        )
       ],
       alignment: Alignment.topCenter,
     );
