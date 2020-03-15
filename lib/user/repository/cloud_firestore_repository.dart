@@ -3,7 +3,8 @@ import 'package:data_consult/user/model/user.dart';
 import 'package:data_consult/user/repository/cloud_repository_API.dart';
 
 class CloudFirestoreRepository{
-
+  
+  //instancia del API
   final _cloudFirestoreAPI = CloudFirestoreAPI();
 
   void updateUserDataFirestore(User user) => _cloudFirestoreAPI.updateUserData(user);

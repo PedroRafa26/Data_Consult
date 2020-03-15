@@ -1,4 +1,3 @@
-import 'package:data_consult/add/add.dart';
 import 'package:data_consult/consult/consult.dart';
 import 'package:data_consult/database/database.dart';
 import 'package:data_consult/user/bloc/bloc_user.dart';
@@ -15,11 +14,6 @@ class HomeCupertino extends StatelessWidget{
       bottomNavigationBar: CupertinoTabScaffold(
         tabBar: CupertinoTabBar(
           items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.add),
-              title: Text("Add"),
-              backgroundColor: Colors.black
-            ),
             BottomNavigationBarItem(
               icon: Icon(Icons.library_books),
               title: Text("Database"),
@@ -41,17 +35,13 @@ class HomeCupertino extends StatelessWidget{
           switch (index){
             case 0:
               return CupertinoTabView(
-                builder: (BuildContext context) => Add(),
+                builder: (BuildContext context) => Database(),
               );
             case 1:
               return CupertinoTabView(
-                builder: (BuildContext context) => Database(),
-              );
-            case 2:
-              return CupertinoTabView(
                 builder: (BuildContext context) => Consult(),
               );
-            case 3:
+            case 2:
               return CupertinoTabView(
                 builder: (BuildContext context){
                   return BlocProvider<UserBloc>(

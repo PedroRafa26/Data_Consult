@@ -24,8 +24,8 @@ class UserBloc implements Bloc{
   }
 
   //2. Registrar usuario en base de datos
-  final _cloudFirestoreRepository = CloudFirestoreRepository();
-  void updateUserData(User user) => _cloudFirestoreRepository.updateUserDataFirestore(user);
+  final _cloudFirestoreRepository = CloudFirestoreRepository(); //instancia del objeto para llamar el metodo
+  void updateUserData(User user) => _cloudFirestoreRepository.updateUserDataFirestore(user); //llamada al metodo
 
 
   signOut() {

@@ -21,11 +21,12 @@ class SignInScreen extends StatefulWidget{
 class _SignInScreen extends State<SignInScreen>{
   
   UserBloc userBloc;
-  
+  double screenWidth;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
 
+    double screenWidth = MediaQuery.of(context).size.width;
 
     //El objeto userBloc Se instancia a traves del Provider que se aloja en el Main.dart
     //Es importante recordar crear la variable antes de la funcion inner linea 19
@@ -57,18 +58,25 @@ class _SignInScreen extends State<SignInScreen>{
       body:Stack(
         alignment: Alignment.center,
         children: <Widget>[
-         GradientBack("", null),
+         GradientBack(height_screen: null),
          Column(
            mainAxisAlignment: MainAxisAlignment.center,
            children: <Widget>[
-             Text("Welcome \n This is your DataConsult App",
-             style: TextStyle(
-               fontSize: 37.0,
-               fontWeight: FontWeight.bold,
-               color: Colors.white
+             Flexible(
+               child: Container(
+                 width: screenWidth,
+                 child: Text("Welcome \n This is your \nDataConsult App",
+                      style: TextStyle(
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white
+                      
+                    ),
+                    textAlign: TextAlign.center,
+                    ),
+             )
              ),
-             ),
-
+             
              ButtonGreen(
                text: "Login with Gmail",
                onPressed: (){

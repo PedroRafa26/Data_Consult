@@ -1,7 +1,6 @@
 import 'package:data_consult/user/bloc/bloc_user.dart';
 import 'package:data_consult/user/ui/screens/profile.dart';
 import 'package:flutter/material.dart';
-import 'package:data_consult/add/add.dart';
 import 'package:data_consult/consult/consult.dart';
 import 'package:data_consult/database/database.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
@@ -21,7 +20,6 @@ class _Home extends State<Home>{
 
   int indexTap=0;
   final List<Widget> widgetsMenu = [
-    Add(),
     Database(),
     Consult(),
     Profile()
