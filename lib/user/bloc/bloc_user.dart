@@ -1,9 +1,12 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:data_consult/client/model/client.dart';
 import 'package:data_consult/client/repository/firebase_storage_repository.dart';
+import 'package:data_consult/database/ui/widgets/client_card.dart';
 import 'package:data_consult/user/model/user.dart';
 import 'package:data_consult/user/repository/cloud_firestore_repository.dart';
+import 'package:data_consult/user/repository/cloud_repository_API.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
@@ -35,8 +38,12 @@ class UserBloc implements Bloc{
   final _firebaseStorageRepository = FirebaseStorageRepository();
   Future<StorageUploadTask> uploadFile(String path, File image)=>_firebaseStorageRepository.uploadFile(path, image);
   
+  Stream<QuerySnapshot> clientsListStream = Firestore.instance.collection(CloudFirestoreAPI().CLIENTS).snapshots();
+  //Este es el objeto que se esta escuchando constantemente
+  Stream<QuerySnapshot> get clientsStream => clientsListStream;
+  List<ClientCard> buildClient(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildClient(placesListSnapshot);
   
-  //3.
+
   Future<void> updateClientDate(Client client) => _cloudFirestoreRepository.updateClientDate(client);
 
 

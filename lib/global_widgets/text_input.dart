@@ -22,7 +22,7 @@ class TextInput extends StatelessWidget{
   Widget build(BuildContext context) {
  
     return Container(
-      padding: EdgeInsets.only(right:20.0,left:20.0),
+      padding: EdgeInsets.all(10.0),
       child: TextField(
         controller: controller,
         keyboardType: inputType,

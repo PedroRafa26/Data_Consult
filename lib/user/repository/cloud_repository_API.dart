@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:data_consult/client/model/client.dart';
+import 'package:data_consult/database/ui/widgets/client_card.dart';
 import 'package:data_consult/user/model/user.dart';
 
 class CloudFirestoreAPI{
@@ -36,14 +37,46 @@ class CloudFirestoreAPI{
     
     await refClients.add(
       {
-        'id':client.id,
+      
+      'id':client.id,
       'name': client.name,
       'last_name:':client.lastName,
       'addres': client.addres,
       'email': client.emailClient
       // 'polizas':  "${POLIZAS/}"//tipo de dato referencia "${Collecion}/${identificador}"
-      }
-      );
+      // para asignar una referencias se procede de la siguiente manera
+      // 'polizas': _db.document("${POLIZAS}/${client.id}") //REFERENCE
+      }).then((DocumentReference dr){
+        dr.get().then((DocumentSnapshot snapshot){
+          snapshot.documentID; //ID del place que se acaba de asignar
+          //Ingresar ID como diferencia y como array
+          DocumentReference refUsers = _db.collection(USERS).document(client.id);
+          refUsers.updateData({
+            'myInsurance': FieldValue.arrayUnion([_db.document("${POLIZAS}/${snapshot.documentID}")])
+          });
+        });
+      });
+  }
+
+
+
+  //Metodo que devuelve una lista de Clientes
+  List<ClientCard> buildClient(List<DocumentSnapshot> placesListSnapshot){
+    //instancia del objeto a devolver
+    List<ClientCard> clientCards = List<ClientCard>();
+    placesListSnapshot.forEach((c){
+
+      clientCards.add(ClientCard(client: 
+      Client(
+        id: c.data['id'], 
+        name: c.data['name'], 
+        //lastName:c.data['lastName'], 
+        cellphone: c.data['cellphone']),
+        ));
+    });
+
+    return clientCards;
+
   }
   
 

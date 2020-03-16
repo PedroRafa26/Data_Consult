@@ -31,9 +31,17 @@ class _AddPlaceScreen extends State<AddClientScreen> {
   @override
   Widget build(BuildContext context) {
 
-    final _controllerTitleClient = TextEditingController();
-    final _controllerDescriptionClient = TextEditingController();
+    final _controllerName = TextEditingController();
+    final _controllerLastName = TextEditingController();
+    final _controllerCellphone = TextEditingController();
+    final _controllerEmail = TextEditingController();
+    final _controllerId = TextEditingController();
+    final _controllerAdress = TextEditingController();
+        
+    
+    
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
+
 
 
     return Scaffold(
@@ -84,25 +92,51 @@ class _AddPlaceScreen extends State<AddClientScreen> {
                     ),
                 ), //Imagen
                 Container(//TextField Title
-                  margin: EdgeInsets.only(top:20.0,bottom: 20.0),
+                  margin: EdgeInsets.only(top:20.0,bottom: 05.0),
                   child: TextInput(
-                    hintText: "Nombres y Apellidos",
+                    hintText: "Nombre",
                     inputType: null, 
-                    controller: _controllerTitleClient, 
+                    controller: _controllerName, 
                     maxLines: 1,
                     ),
+                    /*TextInput(
+                    hintText: "Apellido",
+                    inputType: null, 
+                    controller: _controllerLastName, 
+                    maxLines: 1,
+                    ),*/
+                  
+                    
                 ),
                 TextInput(
-                  hintText: "Direccion", 
-                  inputType: TextInputType.multiline, 
-                  controller: _controllerDescriptionClient,
-                  maxLines: 4,
+                    hintText: "Apellido",
+                    inputType: null, 
+                    controller: _controllerLastName, 
+                    maxLines: 1,
+                    ),
+                TextInput(
+                  hintText: "Cedula de Identidad", 
+                  inputType: null, 
+                  controller: _controllerId,
+                  maxLines: 1,
+                  ),
+                  TextInput(
+                  hintText: "Numero de Telefono", 
+                  inputType: null, 
+                  controller: _controllerCellphone,
+                  maxLines: 1,
+                  ),
+                  TextInput(
+                  hintText: "Correo Electronico", 
+                  inputType: null, 
+                  controller: _controllerEmail,
+                  maxLines: 1,
                   ),
                 Container(
                   padding: EdgeInsets.only(top:20.0),
                   child: TextInputLocation(
                     hintText: "Add Location", 
-                    controller: null, 
+                    controller: _controllerAdress, 
                     iconData: Icons.location_on),
                 ),
                 
@@ -117,6 +151,7 @@ class _AddPlaceScreen extends State<AddClientScreen> {
                         if(user!=null){
                           
                           String uid = user.uid;
+
                           String path = "${uid}/${DateTime.now().toString()}.jpg";
 
 
@@ -125,6 +160,7 @@ class _AddPlaceScreen extends State<AddClientScreen> {
                           userBloc.uploadFile(path, widget.image)
                           .then((StorageUploadTask storageUploadTask){
                             //recuperacion de la URL de la imagen despues de subida
+                            CircularProgressIndicator();
                             storageUploadTask.onComplete.then((StorageTaskSnapshot snapshot) {
 
                               snapshot.ref.getDownloadURL().then((urlImage){
@@ -133,9 +169,12 @@ class _AddPlaceScreen extends State<AddClientScreen> {
                               //2. Cloud Firestore
                               //Place - title, description, url, user
                               userBloc.updateClientDate(Client(
-                                name: _controllerTitleClient.text,
-                                addres: _controllerDescriptionClient.text, 
-                                emailClient: urlImage,
+                                name: _controllerName.text,
+                                lastName: _controllerLastName.text,
+                                cellphone: _controllerCellphone.text,
+                                id: _controllerId.text,
+                                addres: _controllerAdress.text, 
+                                emailClient: _controllerEmail.text,
                                     
 
                               )).whenComplete((){
