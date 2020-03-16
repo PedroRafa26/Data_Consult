@@ -7,6 +7,8 @@ import 'package:data_consult/global_widgets/text_input.dart';
 import 'package:data_consult/global_widgets/title_header.dart';
 import 'package:data_consult/user/bloc/bloc_user.dart';
 import 'package:data_consult/user/ui/widgets/gradient_back.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
@@ -109,21 +111,47 @@ class _AddPlaceScreen extends State<AddClientScreen> {
                   child: SubmitButton(
                     buttonText: "Agregar Cliente",
                     onPressed: (){
-                      //1. Firebase Storage
-                      //url
-                      
-                      
-                      //2. Cloud Firestore
-                      //Place - title, description, url, user
-                      userBloc.updateClientDate(Client(
-                        name: _controllerTitleClient.text,
-                        addres: _controllerDescriptionClient.text,
 
-                      )).whenComplete((){
-                        print("Termino");
-                        Navigator.pop(context);
+                      //ID usuario logeado actualmente
+                      userBloc.currentUser.then((FirebaseUser user){
+                        if(user!=null){
+                          
+                          String uid = user.uid;
+                          String path = "${uid}/${DateTime.now().toString()}.jpg";
+
+
+                          //1. Firebase Storage
+                          //url subida del archivo
+                          userBloc.uploadFile(path, widget.image)
+                          .then((StorageUploadTask storageUploadTask){
+                            //recuperacion de la URL de la imagen despues de subida
+                            storageUploadTask.onComplete.then((StorageTaskSnapshot snapshot) {
+
+                              snapshot.ref.getDownloadURL().then((urlImage){
+                                print("URL Image: ${urlImage}");
+                              
+                              //2. Cloud Firestore
+                              //Place - title, description, url, user
+                              userBloc.updateClientDate(Client(
+                                name: _controllerTitleClient.text,
+                                addres: _controllerDescriptionClient.text, 
+                                emailClient: urlImage,
+                                    
+
+                              )).whenComplete((){
+                                print("Termino");
+                                Navigator.pop(context);
+                              });
+
+                              
+
+                              });
+                            });
+                          });
+                        }
                       });
-
+                      
+                      
 
                     },
                   
