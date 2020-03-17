@@ -33,7 +33,7 @@ class DatabaseClientsList extends StatelessWidget{
                         children: userBloc.buildClient(snapshot.data.documents)
                       );
             case ConnectionState.active:
-              return Column(
+              return ListView(
                         children: userBloc.buildClient(snapshot.data.documents)
                       );
             case ConnectionState.none:

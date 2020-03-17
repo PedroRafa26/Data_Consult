@@ -19,9 +19,9 @@ class Client {
     @required this.lastName,
     this.dateBirth,
     this.addres,
-    @required this.polizas,
-    this.cellphone,
-    @required this.emailClient, 
+    this.polizas,
+    @required this.cellphone,
+    this.emailClient, 
     
   });
 

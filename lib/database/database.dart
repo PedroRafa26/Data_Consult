@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'package:data_consult/client/model/client.dart';
 import 'package:data_consult/client/ui/screens/add_client_screen.dart';
+import 'package:data_consult/database/ui/widgets/client_card.dart';
 import 'package:data_consult/global_widgets/circle_button.dart';
 import 'package:data_consult/user/ui/widgets/gradient_back.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +47,18 @@ class Database extends StatelessWidget{
         
         
         false, Icons.add, 40.0, Colors.white,),
-        )
+        ),
+        /*ClientCard(
+          client: Client(
+            id: '26205994', 
+            name: 'Pedro', 
+            lastName: 'Chacon', 
+            //polizas: null, 
+            emailClient: 'pedrorafa@gmail.com',
+            cellphone: '04247319735'
+            ),
+
+            )*/
       ],
       alignment: Alignment.topCenter,
     );

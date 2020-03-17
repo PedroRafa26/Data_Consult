@@ -41,8 +41,8 @@ class UserBloc implements Bloc{
   Stream<QuerySnapshot> clientsListStream = Firestore.instance.collection(CloudFirestoreAPI().CLIENTS).snapshots();
   //Este es el objeto que se esta escuchando constantemente
   Stream<QuerySnapshot> get clientsStream => clientsListStream;
-  List<ClientCard> buildClient(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildClient(placesListSnapshot);
-  
+  List<ClientCard> buildClient(List<DocumentSnapshot> clientsListSnapshot) => _cloudFirestoreRepository.buildClient(clientsListSnapshot);
+
 
   Future<void> updateClientDate(Client client) => _cloudFirestoreRepository.updateClientDate(client);
 
