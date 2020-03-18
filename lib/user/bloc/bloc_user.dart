@@ -42,7 +42,11 @@ class UserBloc implements Bloc{
   //Este es el objeto que se esta escuchando constantemente
   Stream<QuerySnapshot> get clientsStream => clientsListStream;
   List<ClientCard> buildClient(List<DocumentSnapshot> clientsListSnapshot) => _cloudFirestoreRepository.buildClient(clientsListSnapshot);
-
+  //Nuevo Stream para delimitar clientes por usuarios
+  Stream<QuerySnapshot> myClientsListStream(String uid) =>
+    Firestore.instance.collection(CloudFirestoreAPI().CLIENTS)
+    .where("userOwner", isEqualTo: Firestore.instance.document("${CloudFirestoreAPI().USERS}/$uid"))
+    .snapshots();
 
   Future<void> updateClientDate(Client client) => _cloudFirestoreRepository.updateClientDate(client);
 

@@ -17,7 +17,8 @@ class ClientCard extends StatelessWidget{
    this.client.lastName+' '+this.client.name,
     style: TextStyle(
       fontSize: 20.0,
-      fontWeight: FontWeight.bold
+      fontWeight: FontWeight.bold,
+      color: Colors.white
     ),
   );
 
@@ -37,8 +38,11 @@ class ClientCard extends StatelessWidget{
   final card = Container(
     width: screenWidth*0.65,
     height: 100,
+   // decoration: BoxDecoration(
+    //  borderRadius: BorderRadius.circular(10.0)
+    //),
     /*insertar decoracion*/
-    color: Colors.yellow,
+    color: Colors.lightBlueAccent,
     child: Padding(
       padding: EdgeInsets.all(15.0),
       child: Column(
